@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name="customer_tbl")
 public class Customer {
@@ -14,15 +16,18 @@ public class Customer {
 	@Id
 	@Column(name = "customer_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@ApiModelProperty(notes = "ID of the customer",name="customerId",required=false,value="Auto generated")
 	private int customerId;
 	
 	@Column(name = "customer_name")
 	private String customerName;
 	
 	@Column(name = "email")
+	@ApiModelProperty(notes = "Email of the customer",name="email",required=true,value="test email")
 	private String email;
 	
 	@Column(name = "mobile")
+	@ApiModelProperty(notes = "Mobile Number of the customer",name="mobile",required=true,value="Accept only 10 digits")
 	private String mobile;
 	
 	@Column(name = "address")

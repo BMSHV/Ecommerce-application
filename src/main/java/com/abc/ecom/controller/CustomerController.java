@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.abc.ecom.entity.Customer;
 import com.abc.ecom.service.CustomerService;
 
+import io.swagger.annotations.ApiOperation;
+
 
 @RestController
 @RequestMapping("/customer")
@@ -25,6 +27,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
+	@ApiOperation(value = "Save Customer Details", response = Customer.class, tags = "saveCustomer")
 	@PostMapping("/save")
 	public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
 		
@@ -33,6 +36,7 @@ public class CustomerController {
 		return responseEntity;
 	}
 	
+	@ApiOperation(value = "Get list of all customers", response = Iterable.class, tags = "getAllCustomers")
 	@GetMapping("/all")
 	public List<Customer> fetchAllCustomers(){
 	
@@ -42,6 +46,7 @@ public class CustomerController {
 	 
 	}
 	
+	@ApiOperation(value = "Get specific Customer by customerId", response = Customer.class, tags = "getCustomer")
 	@GetMapping("/get/{cid}")
 	public ResponseEntity<?> fetchCustomerDetails(@PathVariable("cid") int customerId) {
 	
@@ -49,6 +54,7 @@ public class CustomerController {
 		return new ResponseEntity<>(customer, HttpStatus.OK);
 	}
 	
+	@ApiOperation(value = "Delete specific Customer by customerId", response = Customer.class, tags = "deleteCustomer")
 	@DeleteMapping("/delete/{cid}")
 	public ResponseEntity<?> deleteCustomer(@PathVariable("cid") int customerId) {
 	
@@ -56,6 +62,7 @@ public class CustomerController {
 		return new ResponseEntity<>("Customer Deleted with id:" + customerId, HttpStatus.OK);
 	}
 	
+	@ApiOperation(value = "UpdateCustomer", response = Customer.class, tags = "updateCustomer")
 	@PutMapping("/update")
 	public ResponseEntity<Customer> modifyCustomer(@RequestBody Customer customer) {
 	
